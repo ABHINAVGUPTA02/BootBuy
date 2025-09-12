@@ -24,7 +24,10 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categories.stream()
                             .filter(c -> c.getCategoryId().equals(categoryId))
                             .findFirst()
-                            .get();
+                            .orElse(null);
+        if(category == null) {
+            return;
+        }
         categories.remove(category);
     }
 }
