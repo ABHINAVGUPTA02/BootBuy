@@ -1,6 +1,8 @@
 package com.theSilentBell.BootBuy.controller;
 
 import com.theSilentBell.BootBuy.models.Category;
+import com.theSilentBell.BootBuy.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,16 +14,16 @@ import java.util.ArrayList;
 @Slf4j
 @RestController
 public class CategoryController {
-    private ArrayList<Category> categories = new ArrayList<>();
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/api/public/categories")
     public ArrayList<Category> getAllCategories(){
-        return categories;
+        return categoryService.getCategories();
     }
 
     @PostMapping("/api/public/categories")
     public void createCategory(@RequestBody Category category){
-        categories.add(category);
-        log.info("Created category {}", category);
+        categoryService.createCategory(category);
     }
 }

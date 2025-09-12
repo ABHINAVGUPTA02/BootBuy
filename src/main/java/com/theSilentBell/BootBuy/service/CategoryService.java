@@ -1,5 +1,11 @@
 package com.theSilentBell.BootBuy.service;
 
-public interface CategoryService {
+import com.theSilentBell.BootBuy.models.Category;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
+public interface CategoryService {
+    public ArrayList<Category> getCategories();
+    public void createCategory(Category category);
 }
