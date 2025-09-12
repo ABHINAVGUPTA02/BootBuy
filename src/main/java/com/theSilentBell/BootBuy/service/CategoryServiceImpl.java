@@ -19,4 +19,12 @@ public class CategoryServiceImpl implements CategoryService {
         category.setCategoryId(uuid);
         categories.add(category);
     }
+
+    public void deleteCategory(UUID categoryId) {
+        Category category = categories.stream()
+                            .filter(c -> c.getCategoryId().equals(categoryId))
+                            .findFirst()
+                            .get();
+        categories.remove(category);
+    }
 }
