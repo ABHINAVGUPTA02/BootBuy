@@ -4,6 +4,7 @@ import com.theSilentBell.BootBuy.models.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -14,6 +15,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     public void createCategory(Category category) {
+        UUID uuid = UUID.randomUUID();
+        category.setCategoryId(uuid);
         categories.add(category);
     }
 }

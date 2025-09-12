@@ -1,19 +1,21 @@
 package com.theSilentBell.BootBuy.models;
 
+import java.util.UUID;
+
 public class Category {
-    private Long categoryId;
+    private UUID categoryId;
     private String categoryName;
 
-    public Category(Long categoryId, String categoryName) {
+    public Category(UUID categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
-    public Long getCategoryId() {
+    public UUID getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(UUID categoryId) {
         this.categoryId = categoryId;
     }
 
