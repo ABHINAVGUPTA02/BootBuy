@@ -1,7 +1,9 @@
 package com.theSilentBell.BootBuy.service;
 
 import com.theSilentBell.BootBuy.models.Category;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -20,14 +22,13 @@ public class CategoryServiceImpl implements CategoryService {
         categories.add(category);
     }
 
-    public void deleteCategory(UUID categoryId) {
+    public String deleteCategory(UUID categoryId) {
         Category category = categories.stream()
                             .filter(c -> c.getCategoryId().equals(categoryId))
                             .findFirst()
-                            .orElse(null);
-        if(category == null) {
-            return;
-        }
+                            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+
         categories.remove(category);
+        return "Category with id: " + categoryId + " deleted successfully";
     }
 }

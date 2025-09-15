@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface CategoryService {
     public ArrayList<Category> getCategories();
     public void createCategory(Category category);
-    public void deleteCategory(UUID categoryId);
+    public String deleteCategory(UUID categoryId);
 }
