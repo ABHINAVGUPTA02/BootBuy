@@ -11,3 +11,4 @@ public interface CategoryService {
     public String deleteCategory(UUID categoryId);
     public Category updateCategory(UUID categoryId, Category category);
 }
+
