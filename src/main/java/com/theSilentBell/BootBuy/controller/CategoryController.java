@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -19,13 +20,15 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/api/public/categories")
-    public ArrayList<Category> getAllCategories(){
-        return categoryService.getCategories();
+    public ResponseEntity<List<Category>> getAllCategories(){
+        List<Category> categories = categoryService.getCategories();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @PostMapping("/api/public/categories")
-    public void createCategory(@RequestBody Category category){
-        categoryService.createCategory(category);
+    public ResponseEntity<String> createCategory(@RequestBody Category category){
+        String status = categoryService.createCategory(category);
+        return new ResponseEntity<>(status, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/public/categories/{categoryId}")

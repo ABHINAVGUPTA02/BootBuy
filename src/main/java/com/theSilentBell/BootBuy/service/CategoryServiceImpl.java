@@ -6,20 +6,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    private ArrayList<Category> categories =  new ArrayList<>();
+    private List<Category> categories =  new ArrayList<>();
 
-    public ArrayList<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void createCategory(Category category) {
+    public String createCategory(Category category) {
         UUID uuid = UUID.randomUUID();
         category.setCategoryId(uuid);
         categories.add(category);
+        return "Category " + category.getCategoryId() + " created";
     }
 
     public String deleteCategory(UUID categoryId) {
